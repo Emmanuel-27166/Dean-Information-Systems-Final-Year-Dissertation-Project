@@ -1,0 +1,137 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{% url 'student_profile' %}" class="d-block">{{ user.username }}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'student_home' as student_home %}<!-- here we pass our url name from our url.py  -->
+            <a href="{{ student_home }}" class="nav-link {% if request.path == student_home %} active {% endif %}">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+
+
+
+          <li class="nav-item">
+            {% url 'student_view_attendance' as student_view_attendance %}
+            {% url 'student_view_attendance_post' as student_view_attendance_post %}
+            <a href="{{ student_view_attendance }}" class="nav-link {% if request.path == student_view_attendance %} active {% endif %} {% if request.path == student_view_attendance_post %} active {% endif %}">
+              <i class="nav-icon fas fa-eye"></i>
+              <p>
+                View Attendance
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            {% url 'student_view_grade' as student_view_grade %}<!-- here we pass our url name from our url.py  -->
+            <a href="{{ student_view_grade }}" class="nav-link {% if request.path == student_view_grade %} active {% endif %}">
+              <i class="nav-icon fas fa-graduation-cap"></i>
+              <p>
+                Grade Card
+              </p>
+            </a>
+          </li>
+         
+
+<!--============================Beginnin of the other section===================---=-->
+<nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <p>
+                <h4> <i class="nav-icon fas fa-sync" style="color:white"> OTHER</h4></i>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          <ul class="nav nav-treeview">
+         <li class="nav-item">
+            {% url 'student_all_notification' as student_all_notification %}<!-- here we pass our url name from our url.py  -->
+            <a href="{{ student_all_notification }}" class="nav-link {% if request.path == student_all_notification %} active {% endif %}">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Notifications
+              </p>
+            </a>
+          </li>
+  <li class="nav-item">
+            {% url 'student_feedback' as student_feedback %}<!-- here we pass our url name from our url.py  -->
+            <a href="{{ student_feedback }}" class="nav-link {% if request.path == student_feedback %} active {% endif %}">
+              <i class="nav-icon fas fa-bell"></i>
+              <p>
+                Feedback Message
+              </p>
+            </a>
+          </li>
+         <li class="nav-item">
+            {% url 'student_apply_leave' as student_apply_leave %}<!-- here we pass our url name from our url.py  -->
+            <a href="{{ student_apply_leave }}" class="nav-link {% if request.path == student_apply_leave %} active {% endif %}">
+              <i class="nav-icon fas fa-walking"></i>
+              <p>
+                Apply for Leave
+              </p>
+            </a>
+          </li>
+         
+
+
+<!--============================Ending of the other section===================---=-->
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+
+<!-- beginning of the power off button ie the logout btn -->
+<ul class="navbar-nav ml-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'logout' %}">
+             <b>
+              <i class="fa fa-power-off" title="Logout" ></i>
+
+              <style>
+                .fa-power-off{
+                  font-size:24px;
+                  color: grey !important;;
+                  margin-top: 24px;
+                  margin-right: 24px;;
+                }
+                .fa-power-off:hover{
+                  font-size:24px;
+                  color: rgb(249, 5, 5) !important;;
+                  margin-top: 24px;
+                  margin-right: 24px;;
+                }
+              </style>
+
+      <!--styling ends--->
+                </b>
+    </a>
+  </li>
+</ul>
+<!-- ending of the power off button ie the loogout btn -->
+
+
+    </div>
+    <!-- /.sidebar -->
+  </aside>

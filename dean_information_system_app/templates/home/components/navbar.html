@@ -1,0 +1,78 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/home/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/home/css/owl.theme.default.min.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static '/home/css/style.css' %}">
+
+    <title>Dean Information System | Home</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+
+
+    <!-- TOP NAV -->
+    <div class="top-nav " style="background-color: gray;" id="home">
+        <div class="container">
+            <div class="row justify-content-between ">
+                <div class="col-auto">
+
+                    <h1 class="text-white"> Dean's Information System (DIS)</h1>
+                </div>
+                <div class="col-auto top-nav1">
+                    <!-- <h6>Faculty of Information System & Technology</h6> -->
+
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="{% static 'home/img/logo.png' %}" width="60" height="60" alt="Techminds"></a>
+            <!-- <img src="{% static 'home/img/about.png' %} " alt="ggggggg"> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+                  
+   
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+
+                      <li class="nav-item dropdown"> 
+                       <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Login
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'deanLogin' %}">Dean</a></li>
+                          <li><a class="dropdown-item" href="{% url 'staffLogin' %}">Staff</a></li>
+                          <li><a class="dropdown-item" href="{% url 'studentLogin' %}">Student</a></li>
+                        </ul>
+                      </li> 
+
+                </ul>
+ 
+            </div>
+        </div>
+    </nav>

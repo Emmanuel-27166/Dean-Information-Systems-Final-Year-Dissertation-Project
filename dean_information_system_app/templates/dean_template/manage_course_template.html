@@ -1,0 +1,114 @@
+{% extends 'dean_template/base_template.html' %}
+{% block page_title %}
+Manage Course
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Course Details</h3>
+
+                <!--THE SEARCHBAR BEGINS-->
+ 
+                
+                <form class="form-inline  float-right">
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 240px;">
+                      <input type="search" name="searchbar" class="form-control float-right" placeholder="Enter Course Name" required>
+  
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search">Search</i></button>
+                      </div>
+                    </div>
+                  </div> 
+              
+                  <!--THE SEARCHBAR ENDS-->
+
+
+
+                
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Course Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for course in courses %}
+                    <tr>
+                      <td>{{ course.id }}</td>
+                      <td>{{ course.course_name }}</td>
+                      <td>
+                        <button type="button" href="{% url 'view_course_modal' course.id %}" class="btn btn-info" data-toggle="modal" data-target="#myModal{{course.id}}">View</button>
+                        
+                        <!-- HERE WE BUILD THE MODAL VIEW COURSES COMPONENT BEGINS-->
+
+
+                                                  <!-- Modal -->
+                                                  <div id="myModal{{course.id}}" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                        
+                                                      <!-- Modal content-->
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                         
+                                                          <h4 class="modal-title">
+                                                            Course Name:   {{ course.course_name }}
+                                                            
+                                                          </h4>
+                                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        
+                                                        <div class="modal-body">
+                                                          <ul class="list-unstyled">
+                                                            <!-- <li>ID:  <strong>{{ course.id }} </strong></li> -->
+                                                            <li>Course Name:  <strong>  {{ course.course_name }} </strong></li>
+                                                           
+                                                        
+                        
+                                                          </ul>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                           <!-- test -->
+                                                        <!-- <button type="button" class="btn btn-primary" id="printButton">Print PDF</button> -->
+                                                        <!-- test -->
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                       
+                                                      </div>
+                                                      </div>
+                        
+                                                    </div>
+                                              </div>
+                        
+                                        <!-- HERE WE BUILD THE MODAL VIEW COURSES COMPONENT ENDS-->
+                        
+                        
+                        
+                        
+                        <a href="/edit_course/{{ course.id }}" class="btn btn-success">Edit</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

@@ -1,0 +1,110 @@
+
+{% include 'home/components/navbar.html'%}
+{% load static %}
+{% static "images/" as baseUrl  %}
+
+    <!-- SLIDER -->
+    
+    
+ <div class="owl-carousel owl-theme hero-slider">
+    {% for call_to_action in call_to_actions  %}
+        <div class="slide slide1" >
+        
+            <div class="container"> 
+                <div class="row">
+                    <div class="col-12 text-center text-white">
+                        <h6 class="text-white text-uppercase">{{call_to_action.Title}} </h6>
+                        <h1 class="display-3 my-4">{{call_to_action.SubTitle}}</h1>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+          {% endfor %}
+    </div>
+
+<!--================OUR COURSES WE DO BEGINS============================-->
+
+    <section id="courses">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <div class="intro">
+                      <h1>Our Courses</h1>
+                      
+                  {% for aboutCoursesSection in aboutCoursesSections %}
+                        <h5>{{aboutCoursesSection.Section}}</h5>
+                      <p class="mx-auto">{{aboutCoursesSection.Paragraph}}</p>
+                  {% endfor %}
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+          
+          {% for  aboutCoursesDescription in aboutCoursesDescriptions  %}
+              <div class="col-sm-12  col-md-6 col-lg-4 col-xl-3 mb-4">
+                  <article class="course-post">
+                      <img src="{{aboutCoursesDescription.Image.url}}" alt="" width="768" height="200">
+                      <div class="content">
+                          <h5>{{aboutCoursesDescription.CourseName}}</h5>
+                          <p>{{aboutCoursesDescription.Description}}</p>
+                      </div>
+                  </article>
+              </div>
+              {% endfor %}       
+          </div>
+      </div>
+  </section>
+
+<!--================OUR COURSES WE DO ENDS============================-->
+
+
+
+<!--================OUR BLOG POST BEGINS============================-->
+    <section id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="intro">
+                        <h1>Blog</h1>
+                        
+                    {% for postSection in postSections %}
+                          <h5>{{postSection.Section}}</h5>
+                        <p class="mx-auto">{{postSection.Paragraph}}</p>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+            
+            {% for  postDescription in postDescriptions  %}
+                <div class="col-sm-12  col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <article class="blog-post">
+                        <img src="{{postDescription.Image.url}}" alt="" width="768" height="220">
+                       
+                        <a href="#" class="tag">{{postDescription.Topic}}</a>
+                        <div class="content">
+                            <small>{{postDescription.Date}}</small>
+                            <h5>{{postDescription.Title}}</h5>
+                            <p>{{postDescription.Description}}</p>
+                        </div>
+                    </article>
+                </div>
+                {% endfor %}    
+            </div>
+        </div>
+    </section>
+<!--================OUR BLOG POST ENDS============================-->
+
+
+<!--===================OUR GALLERY BEGINS==========================-->
+
+<!-- for future GALLERY implementation -->
+<!--===================OUR GALLERY ENDS ==========================-->
+
+
+
+    {% include 'home/components/footer.html'%}

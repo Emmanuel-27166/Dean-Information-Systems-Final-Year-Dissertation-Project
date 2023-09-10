@@ -1,0 +1,81 @@
+{% extends 'dean_template/base_template.html' %}
+{% block page_title %}
+Edit Module | Module ID : {{ module.id }}
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Edit Module</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/edit_module_save" method="post" class="was-validated">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group required">
+                    <label class="control-label">Module Name </label>
+                    <input type="text" class="form-control" name="module_name" placeholder="Enter Module" value="{{ module.module_name }}">
+                    <input type="hidden" class="form-control" name="module_id" placeholder="Enter Module" value="{{ module.id }}">
+                    <div class="invalid-feedback">Please fill out this field</div>  
+                  </div>
+                  <div class="form-group required">
+                    <label class="control-label">Module Code </label>
+                    <input type="text" class="form-control" name="module_code" placeholder="Enter Module" value="{{ module.module_code }}">
+                    <input type="hidden" class="form-control" name="module_id" placeholder="Enter Module" value="{{ module.id }}">
+                    <div class="invalid-feedback">Please fill out this field</div>  
+                  </div>
+                   <div class="form-group required">
+                    <label class="control-label">Course </label>
+                    <select class="form-control" name="course">
+                        {% for course in courses %}
+                              <option value="{{ course.id }}" {% if course.id == module.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group required">
+                    <label class="control-label" >Staff</label>
+                    <select class="form-control" name="staff">
+                        {% for staff in staffs %}
+                          <option value="{{ staff.id }}" {% if staff.id == module.staff_id.id %} selected {% endif %}>{{ staff.first_name }} {{ staff.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="invalid-feedback">Please fill out this field</div>  
+                  </div>
+                   <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Save Module</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

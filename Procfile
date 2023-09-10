@@ -1,0 +1,1 @@
+web: gunicorn dean_information_system.wsgi --log-file -

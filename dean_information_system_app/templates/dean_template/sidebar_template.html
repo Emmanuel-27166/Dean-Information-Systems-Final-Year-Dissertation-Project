@@ -1,0 +1,367 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+<!--==============================THIS IS THE BEGINNNING OF THE SIDEBAR OF ADMIN========-->
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{% url 'admin_profile' %}" class="d-block">{{ user.username }}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'admin_home' as admin_home %}<!-- here we pass our url name from our url.py  -->
+            <a href="{{ admin_home }}" class="nav-link {% if request.path == admin_home %} active {% endif %}">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+
+
+<!-- Sidebar Menu -->
+
+ <!---================bEGINNING  of Course Secction====================--->
+ <nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+    <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+    <li class="nav-item has-treeview menu-open">
+      <a href="#" class="nav-link active">
+        <p>
+          <h4> <i class="nav-icon fas fa-chalkboard" style="color:white"> COURSE</h4></i>
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+       <ul class="nav nav-treeview">
+        <li class="nav-item">
+      {% url 'add_course' as add_course %}<!-- here we pass our url name from our url.py  -->
+      <a href="{% url 'add_course' %}" class="nav-link {% if request.path == add_course %} active {% endif %}">
+        <i class="nav-icon fa fa-plus"></i>
+        <p>
+          Add Course
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      {% url 'manage_course' as manage_course %}<!-- here we pass our url name from our url.py  -->
+        {% url 'edit_course' course_id=id as edit_course %}<!-- here we pass our url name from our url.py  -->
+      <a href="{% url 'manage_course' %}" class="nav-link {% if request.path == manage_course %} active {% endif %} {% if request.path == edit_course %} active {% endif %}">
+        <i class="nav-icon fas fa-th"></i>
+        <p>
+          Manage Course
+        </p>
+      </a>
+    </li>
+</ul>
+</nav> 
+<!---================End of Course Secction====================--->
+
+
+
+  <!---================BEGINNING of OTHER Secction====================--->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+          <p>
+            <h4> <i class="nav-icon fas fa-sync" style="color:white"> OTHER</h4></i>
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+         <ul class="nav nav-treeview">
+          <li class="nav-item">
+        {% url 'manage_session' as manage_session %}<!-- here we pass our url name from our url.py  -->
+        <a href="{% url 'manage_session' %}" class="nav-link {% if request.path == manage_session %} active {% endif %} ">
+          <i class="nav-icon fas fa-calendar"></i>
+          <p>
+            Manage Session Year
+          </p>
+        </a>
+      </li>
+
+
+
+{% comment %} 
+      <li class="nav-item">
+        {% url 'admin_view_attendance' as admin_view_attendance %}<!-- here we pass our url name from our url.py  -->
+         <a href="{% url 'admin_view_attendance' %}" class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
+          <i class="nav-icon far fa-eye"></i>
+          <p>
+            View Grade
+          </p>
+        </a>
+      </li> {% endcomment %}
+
+
+
+    </ul>
+  </nav>
+
+  <!--ENDING OF OTHER SECTION-->
+
+
+
+
+
+
+
+
+    <!--============staff or Section====================--->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <p>
+                <h4> <i class="nav-icon fas fa-chalkboard-teacher " style="color:white">  STAFF</h4></i>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+            
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+              {% url 'add_staff' as add_staff %}<!-- here we pass our url name from our url.py  -->
+                <a href="{{ add_staff }}" class="nav-link {% if request.path == add_staff %} active {% endif %}">
+                  <i class="fa fa-plus nav-icon"></i>
+                  <p>Add Staff</p>
+                </a>
+              </li>
+
+
+             <li class="nav-item">
+              {% url 'manage_staff' as manage_staff %}<!-- here we pass our url name from our url.py  -->
+            {% url 'edit_staff' staff_id=id as edit_staff %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'manage_staff' %}" class="nav-link {% if request.path == manage_staff %} active {% endif %} {% if request.path == edit_staff %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage Staff
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+               {% url 'staff_feedback_message' as staff_feedback_message %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'staff_feedback_message' %}" class="nav-link {% if request.path == staff_feedback_message %} active {% endif %}">
+              <i class="nav-icon 	fas fa-bell"></i>
+              <p>
+                Staff Feedback
+              </p>
+            </a>
+          </li>
+
+            <li class="nav-item">
+                 {% url 'staff_leave_view' as staff_leave_view %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'staff_leave_view' %}" class="nav-link {% if request.path == staff_leave_view %} active {% endif %}">
+              <i class="nav-icon fas fa-walking"></i>
+              <p>
+                Staff Leave
+              </p>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            {% url 'admin_send_notification_staff' as admin_send_notification_staff %}<!-- here we pass our url name from our url.py  -->
+             <a href="{% url 'admin_send_notification_staff' %}" class="nav-link {% if request.path == admin_send_notification_staff %} active {% endif %}">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Send Staff Notification
+              </p>
+            </a> 
+          </li>
+    </ul>
+    </nav>
+          <!---================End of staff Secction====================--->
+
+
+
+
+          
+<!---================bEGINNING  of MODULE Secction====================--->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+      <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+          <p>
+            <h4> <i class="nav-icon fas fa-book-open" style="color:white"> MODULE</h4></i>
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+         <ul class="nav nav-treeview">
+            <li class="nav-item">
+        {% url 'add_module' as add_module %}<!-- here we pass our url name from our url.py  -->
+        <a href="{% url 'add_module' %}" class="nav-link {% if request.path == add_module %} active {% endif %}">
+          <i class="nav-icon fa fa-plus"></i>
+          <p>
+            Add Module
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        {% url 'manage_module' as manage_module %}<!-- here we pass our url name from our url.py  -->
+        {% url 'edit_module' module_id=id as edit_module %}<!-- here we pass our url name from our url.py  -->
+        <a href="{% url 'manage_module' %}" class="nav-link {% if request.path == manage_module %} active {% endif %} {% if request.path == edit_module %} active {% endif %} ">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Manage Module
+          </p>
+        </a>
+      </li>
+
+      </ul>
+      </nav>
+<!---================End of Module Secction====================--->
+
+
+
+
+          <!---------------------======================================================================-->
+ <!---================Beginning  of student Secction====================--->
+
+     <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> 
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <p>
+                <h4> <i class="nav-icon fas fa-book-reader" style="color:white"> STUDENT</h4></i>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+              {% url 'add_student' as add_student %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'add_student' %}" class="nav-link {% if request.path == add_student %} active {% endif %}">
+              <i class="nav-icon fa fa-plus"></i>
+              <p>
+                Add Student
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+              {% url 'manage_student' as manage_student %}<!-- here we pass our url name from our url.py  -->
+              {% url 'edit_student' student_id=id as edit_student %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'manage_student' %}" class="nav-link {% if request.path == manage_student %} active {% endif %} {% if request.path == edit_student %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Manage Students
+              </p>
+            </a>
+          </li>
+
+
+      
+          <li class="nav-item">
+            {% url 'admin_view_attendance' as admin_view_attendance %}<!-- here we pass our url name from our url.py  -->
+             <a href="{% url 'admin_view_attendance' %}" class="nav-link {% if request.path == admin_view_attendance %} active {% endif %}">
+              <i class="nav-icon far fa-eye"></i>
+              <p>
+                View Attendance
+              </p>
+            </a>
+          </li>
+
+
+         <li class="nav-item">
+             {% url 'student_feedback_message' as student_feedback_message %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'student_feedback_message' %}" class="nav-link {% if request.path == student_feedback_message %} active {% endif %}">
+              <i class="nav-icon 	fas fa-bell"></i>
+              <p>
+                Student Feedback
+              </p>
+            </a>
+          </li>
+
+           <li class="nav-item">
+               {% url 'student_leave_view' as student_leave_view %}<!-- here we pass our url name from our url.py  -->
+            <a href="{% url 'student_leave_view' %}" class="nav-link {% if request.path == student_leave_view %} active {% endif %}">
+              <i class="nav-icon fas fa-walking"></i>
+              <p>
+                Student Leave
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            {% url 'admin_send_notification_student' as admin_send_notification_student %}<!-- here we pass our url name from our url.py  -->
+             <a href="{% url 'admin_send_notification_student' %}" class="nav-link {% if request.path == admin_send_notification_student %} active {% endif %}">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Send Student Notification
+              </p>
+            </a>
+          </li>
+             <!---================End of student Secction====================--->
+           
+</ul>
+</nav>
+
+
+
+
+
+
+      <!-- beginning of the power off button ie the loogout btn -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">
+                   <b>
+                    <i class="fa fa-power-off" title="Logout" ></i>
+  
+                    <style>
+                      .fa-power-off{
+                        font-size:24px;
+                        color: grey !important;;
+                        margin-top: 24px;
+                        margin-right: 24px;;
+                      }
+                      .fa-power-off:hover{
+                        font-size:24px;
+                        color: rgb(249, 5, 5) !important;;
+                        margin-top: 24px;
+                        margin-right: 24px;;
+                      }
+                    </style>
+  
+            <!--styling ends--->
+                      </b>
+          </a>
+        </li>
+      </ul>
+<!-- ending of the power off button ie the loogout btn -->
+
+  <!---================End of Subject Secction====================--->
+
+
+
+
+
+
+
+
+
+
+
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

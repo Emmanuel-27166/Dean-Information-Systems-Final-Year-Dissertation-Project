@@ -1,0 +1,180 @@
+{% extends 'dean_template/base_template.html' %}
+{% block page_title %}
+Add Student
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add Student</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                {% url 'add_student_save' as action_path %}
+                {% include 'dean_template/form_template.html' with messages=messages form=form action_path=action_path button_text="Add Student" %}
+            
+
+            
+            </div>
+
+
+
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+{% block custom_js %}
+<script>
+    $(document).ready(function(){
+
+        //validuation for the email
+        $("#id_email").keyup(function(){
+            var email=$(this).val();
+
+           if(email!=""){
+                $.ajax({
+                    // url:'{'/check_email_exist/' }',
+                    url:'{% url 'check_email_exist' %}',
+                    type:'POST',
+                    data:{email:email}
+                })
+                .done(function(response){
+                    console.log(response);
+                    if(response=="True"){
+                        $(".email_error").remove();
+                        $("<span class='email_error' style='padding: 5px;color: red;font-weight: bold;'>Email Already Taken</span>").insertAfter("#id_email");
+                    }
+                    else{
+                        $(".email_error").remove();
+                        $("<span class='email_error' style='padding: 5px;color: green;font-weight: bold;'>Email Available</span>").insertAfter("#id_email");
+                    }
+                })
+                .fail(function(){
+                    console.log("failed");
+                })
+            }
+            else{
+              $(".email_error").remove();
+            }
+
+        });
+     //validuation for the username
+        $("#id_username").keyup(function(){
+            var username=$(this).val();
+
+            if(username!=""){
+                $.ajax({
+                    // url:'{ '/check_username_exist/' ',
+                    url:'{% url 'check_username_exist' %}',
+                    type:'POST',
+                    data:{username:username}
+                })
+                .done(function(response){
+                    console.log(response);
+                    if(response=="True"){
+                        $(".username_error").remove();
+                        $("<span class='username_error' style='padding: 5px;color: red;font-weight: bold;'>Username Already Taken</span>").insertAfter("#id_username");
+                    }
+                    else{
+                        $(".username_error").remove();
+                        $("<span class='username_error' style='padding: 5px;color: green;font-weight: bold;'>Username Available</span>").insertAfter("#id_username");
+                    }
+                })
+                .fail(function(){
+                    console.log("failed");
+                })
+            }
+            else{
+                $(".username_error").remove();
+            }
+
+        });
+
+
+    //    //validuation for the Registration Number
+      $("#id_registration_no").keyup(function(){
+            var registration_no=$(this).val();
+
+            if(registration_no!=""){
+                $.ajax({
+                    // url:'{ '/check_registration_no_exist/' }',
+                    url:'{% url 'check_registration_no_exist' %}',
+                    type:'POST',
+                    data:{registration_no:registration_no}
+                })
+                .done(function(response){
+                    console.log(response);
+                    if(response=="True"){
+                        $(".registration_no_error").remove();
+                        $("<span class='registration_no_error' style='padding: 5px;color: red;font-weight: bold;'>Registration Number Already Exist </span>").insertAfter("#id_registration_no");
+                    }
+                    else{
+                        $(".registration_no_error").remove();
+                        $("<span class='registration_no_error' style='padding: 5px;color: green;font-weight: bold;'>Registration Number Available</span>").insertAfter("#id_registration_no");
+                    }
+                })
+                .fail(function(){
+                    console.log("failed");
+                })
+            }
+            else{
+                $(".registration_no_error").remove();
+            }
+
+        });
+
+   
+    //    //validuation for the Telephone Number
+      $("#id_telephone").keyup(function(){
+            var telephone=$(this).val();
+
+            if(telephone!=""){
+                $.ajax({
+                    url:'{% url 'check_telephone_exist' %}',
+                    type:'POST',
+                    data:{telephone:telephone}
+                })
+                .done(function(response){
+                    console.log(response);
+                    if(response=="True"){
+                        $(".telephone_error").remove();
+                        $("<span class='telephone_error' style='padding: 5px;color: red;font-weight: bold;'>Telephone Number Already Exist </span>").insertAfter("#id_telephone");
+                    }
+                    else{
+                        $(".telephone_error").remove();
+                        $("<span class='telephone_error' style='padding: 5px;color: green;font-weight: bold;'>Telephone Number Available</span>").insertAfter("#id_telephone");
+                    }
+                })
+                .fail(function(){
+                    console.log("failed");
+                })
+            }
+            else{
+                $(".telephone_error").remove();
+            }
+
+        });
+
+
+   
+   
+   
+    });
+
+
+</script>
+ 
+
+
+{% endblock custom_js %}

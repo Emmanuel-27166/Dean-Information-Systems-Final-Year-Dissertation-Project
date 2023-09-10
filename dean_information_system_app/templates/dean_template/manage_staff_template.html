@@ -1,0 +1,132 @@
+{% extends 'dean_template/base_template.html' %}
+{% block page_title %}
+Manage Staff
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Staff Details</h3>
+ 
+                <!--THE SEARCHBAR BEGINS-->
+ 
+                {% include 'dean_template/searchbar.html'%}
+
+                            
+                  <!--THE SEARCHBAR ENDS-->
+
+
+                
+
+
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>User Name</th>
+                      <th>Email</th>
+                 <!--    <th>Password</th>--> 
+                      <th>Address</th>
+                      <th>Telephone</th>
+                      <th>Qualification</th>
+                      <th>Last Login</th>
+                      <th>Date Joined</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for staff in staffs %}
+                    <tr>
+                      <td>{{ staff.admin.id }}</td>
+                      <td>{{ staff.admin.first_name }}</td>
+                      <td>{{ staff.admin.last_name }}</td>
+                      <td>{{ staff.admin.username }}</td>
+                      <td>{{ staff.admin.email }}</td>
+                 <!--   <td>{{ staff.admin.password }}</td>--> 
+                      <td>{{ staff.address }}</td>
+                      <td>{{ staff.telephone }}</td>
+                      <td>{{ staff.qualification }}</td>
+                      <td>{{ staff.admin.last_login }}</td>
+                      <td>{{ staff.admin.date_joined }}</td>
+                      <td>
+
+
+                        <button type="button" href="{% url 'view_staff_modal' staff.admin.id %}" class="btn btn-info" data-toggle="modal" data-target="#myModal{{staff.admin.id}}">View</button>
+                        
+                        <!-- HERE WE BUILD THE MODAL VIEW STUDENTS COMPONENT BEGINS-->
+                          <!-- Modal -->
+                          <div id="myModal{{staff.admin.id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                 
+                                  <h4 class="modal-title">
+                                    Staff: {{ staff.admin.first_name }} {{ staff.admin.last_name }}
+                                    
+                                  </h4>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                  <ul class="list-unstyled">
+                                    <!-- <li>ID:  <strong>{{ staff.admin.id }} </strong></li> -->
+                                    <li>First Name:  <strong>{{ staff.admin.first_name }} </strong></li>
+                                    <li>Last Name: <strong>{{ staff.admin.last_name }} </strong></li>
+                                    <li>Username  <strong>{{ staff.admin.username}} </strong></li>
+                                    <li>Email:  <strong> {{ staff.admin.email}}</strong></li>
+                                    <li>Address:   <strong>{{ staff.address }} </strong></li>
+                                    <li>Telephone:  <strong>{{ staff.telephone }} </strong></li>
+                                    <li>Qualification:  <strong>{{ staff.qualification }} </strong></li>
+                                    <li>Date Joined:  <strong> {{ staff.admin.date_joined }} </strong></li>
+                                    <li>Last Login:  <strong>{{ staff.admin.last_login }}  </strong></li>
+                                    
+                                  
+
+                                  </ul>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+
+                            </div>
+                      </div>
+
+                <!-- HERE WE BUILD THE MODAL VIEW STUDENTS COMPONENT ENDS-->
+
+
+
+
+                        <a href="/edit_staff/{{ staff.admin.id }}" class="btn btn-success">Edit</a>
+                        
+
+                        
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
+

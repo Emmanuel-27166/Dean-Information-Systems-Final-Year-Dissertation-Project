@@ -1,0 +1,8 @@
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+  }
+
+
+  /* the above is the css style for all our input filed required.......... */
+  /* inside the for group class we add required then inside the label we add label.. */

@@ -1,0 +1,92 @@
+{% extends 'student_template/base_template.html' %}
+{% block page_title %}
+Grades
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+                    <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+
+            <!-- /.card -->
+           <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Grade</h3>
+              </div>
+
+               <div class="table">
+               <table class="table table-bordered">
+                   <tr>
+                       <th>ID</th>
+                       <th>Module</th>
+                 <!--     <th>Continous Assessment</th>
+                       <th>Exam Marks</th>--> 
+                       <th>Grade</th>
+
+                       <th>Status</th>
+                   </tr>
+                   {% for row in studentgrade %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.module_id.module_name }}</td>
+                     <!--        <td>{{ row.module_assignment_marks }}</td>
+                            <td>{{ row.module_exam_marks }}</td>--> 
+                            <td>{{ row.module_grade_marks }}</td>
+                         
+                            <td>
+                              {% if row.module_grade_marks >= 70  %} 
+                                <span class="alert alert-success"> <b>EXCELLENT </b>|  A [4.00]</span>
+
+                              {% elif row.module_grade_marks >= 65 %}
+                                <span class="alert alert-success"> <b>VERY GOOD </b>|  B+ [3.50]</span>
+                              
+                              
+                              {% elif row.module_grade_marks >= 60 %}
+                                <span class="alert alert-success"> <b>GOOD </b>|  B  [3.00]</span>
+
+                                
+                              {% elif row.module_grade_marks >= 55 %}
+                                <span class="alert alert-success"> <b>GOOD </b>|  B- [2.75]</span>
+                              
+                                
+                              {% elif row.module_grade_marks >= 50 %}
+                                <span class="alert alert-success"> <b>CREDIT </b>|  C+ [2.50]</span>
+                              
+                              {% elif row.module_grade_marks >= 45 %}
+                                <span class="alert alert-success"> <b>CREDIT </b>|  C [2.00]</span>
+                              
+                              
+                              {% elif row.module_grade_marks >= 40 %}
+                                <span class="alert alert-success"> <b>PASS </b>|  C- [1.50]</span>
+                              
+                              
+                              {% elif row.module_grade_marks >= 35 %}
+                                <span class="alert alert-success"> <b>CONDITIONAL PASS </b>|  D [1.00]</span>
+                              
+                              {% elif row.module_grade_marks >= 30 %}
+                                <span class="alert alert-success"> <b>FAIL </b>|  E [0.05]</span>
+                              
+                              
+                                {% else %}
+                                 <span class="alert alert-danger"><b>FAIL </b>|  F [0.00]</span>
+                                {% endif %}
+                            </td>
+                          
+
+
+                        </tr>
+                   {% endfor %}
+               </table>
+               </div>
+            </div>
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}
